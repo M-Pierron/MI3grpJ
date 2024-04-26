@@ -6,17 +6,16 @@
 		$donnees[] = $data;
 	}
 	foreach ($donnees as &$ligne) {
-		if ($ligne[0] == $_SESSION["ID"]) {
-			$ligne[1] = $_POST["email"];
-			$ligne[2] = $_POST["mdp"];
-			$ligne[3] = $_POST["nom"];
-			$ligne[4] = $_POST["prenom"];
-			$ligne[5] = $_POST["pseudo"];
-			$ligne[6] = $_POST["age"];
-			$ligne[7] = $_POST["sexe"];
-			$ligne[8] = $_POST["taille"];
-			$ligne[9] = $_POST["poids"];
-			$ligne[10] = $_POST["centreinteret"];
+		if ($ligne[0] == $_SESSION["email"]) {
+			$ligne[1] = $_POST["mdp"];
+			$ligne[2] = $_POST["nom"];
+			$ligne[3] = $_POST["prenom"];
+			$ligne[4] = $_POST["pseudo"];
+			$ligne[5] = $_POST["age"];
+			$ligne[6] = $_POST["sexe"];
+			$ligne[7] = $_POST["taille"];
+			$ligne[8] = $_POST["poids"];
+			$ligne[9] = $_POST["centreinteret"];
 			break;
 		}
 	}
