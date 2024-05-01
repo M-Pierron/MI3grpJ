@@ -1,5 +1,5 @@
 <?php
-	$fichier_csv = fopen("donnees.csv", "r+");
+	$fichier_csv = fopen("MonJambonbeurre.fr/users/$email_session/donnees", "r+");
 
 	$donnees = [];
 	while (($data = fgetcsv($fichier_csv, 1000, ";")) !== FALSE) {
