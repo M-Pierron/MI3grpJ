@@ -60,3 +60,4 @@ index.hmtl
 envoi_message.php
 messagerie.php
 recuperation_message.php
+cookie.php
