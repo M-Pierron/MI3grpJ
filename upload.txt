@@ -67,3 +67,9 @@ barrerecherche.php
 
 16/05/2024
 testcookie2.php
+
+17/05/2024:
+inscription.html
+traitement_formulaire.php
+connection.html
+traitement_connection.php
