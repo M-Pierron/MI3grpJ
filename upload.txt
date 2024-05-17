@@ -73,3 +73,4 @@ inscription.html
 traitement_formulaire.php
 connection.html
 traitement_connection.php
+Update barrerecherche.php 
