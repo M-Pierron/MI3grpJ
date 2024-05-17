@@ -1,10 +1,7 @@
 <?php
+$dossier='Monjambonbuerre/users';
+$tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
-$fichiers=[
-	"Monjambonbuerre\users\user1@exemple.com/donnees.csv",
-	"Monjambonbuerre\users\user2@exemple.com/donnees.csv",
-	"Monjambonbuerre\users\user3@exemple.com/donnees.csv",
-	];
 // Fonction pour lire et extraire les informations du profil
 function recupinfo($nomfichier) {
     if (($fichier = fopen($nomfichier, 'r')) !== false) {
@@ -20,8 +17,11 @@ function recupinfo($nomfichier) {
 }
 
 // Parcourir les fichiers et récupérer informations à afficher
+
 $results = [];
-foreach ($fichiers as $fichier) {
+foreach ($tablesdossiers as $tablesdossiers) {
+	//$sousdossier=$tablesdossiers;
+	$fichier="Monjambonbuerre/users/$tablesdossiers/donnees.csv";
     $result = recupinfo($fichier);
     if ($result !== null) {
         $results[] = $result;
@@ -52,7 +52,8 @@ if (isset($_GET['recherche'])) {
         foreach ($results as $result) {
             // Si une recherche a été effectuée, filtrer les résultats
             if ($recherche === '' || strpos(strtolower($result), $recherche) !== false) {
-                echo "<li>" . htmlspecialchars($result) . "</li>";
+				
+                echo "<li><a href="lien"> " . htmlspecialchars($result) . "</a> </li>";
             }
         }
         ?>	
@@ -61,4 +62,3 @@ if (isset($_GET['recherche'])) {
 </body>
 
 </html>
-
