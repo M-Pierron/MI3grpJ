@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Le fichier où les donnees sont enregistrées    
 	$fichier = $email.'/donnees_inscription.txt';
+	mkdir($email.'/photo');
 
 	$file = fopen($fichier, 'a');
 	fwrite($file, $donnees);
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!empty($_FILES['images']['name'][0])) {
 		foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
 			$fileName = basename($_FILES['images']['name'][$key]);
-			$targetFilePath = $email . '/' . $fileName;
+			$targetFilePath = $email . '/photo/' . $fileName;
 
 			// Déplace le fichier vers le dossier cible
 			if (move_uploaded_file($tmp_name, $targetFilePath)) {
