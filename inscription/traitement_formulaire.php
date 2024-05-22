@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Le fichier où les donnees sont enregistrées    
 	$fichier = $email.'/donnees_inscription.txt';
-	mkdir($email.'/photo');
-
+	
+	// Ecrit dans le fichier les données entrée a l'inscriprion
 	$file = fopen($fichier, 'a');
 	fwrite($file, $donnees);
 	fclose($file);
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!empty($_FILES['images']['name'][0])) {
 		foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
 			$fileName = basename($_FILES['images']['name'][$key]);
-			$targetFilePath = $email . '/photo/' . $fileName;
+			$targetFilePath = $email . '/' . $fileName;
 
 			// Déplace le fichier vers le dossier cible
 			if (move_uploaded_file($tmp_name, $targetFilePath)) {
@@ -49,7 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	else {
 		echo 'Aucun fichier téléchargé.';
 	}
-
+	
+	// Met l'attribut VIP si c'est une femme
+	if ($sexe=="Femme") {
+		setcookie('VIP', 'true', time() + (10 * 365 * 24 * 60 * 60), '/');
+	}
+	
 	header("Location: https://cytech.cyu.fr/");
 	exit;
 }
