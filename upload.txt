@@ -77,3 +77,6 @@ Update barrerecherche.php
 
 22/05/2024 :
 traitement_formulaire.php
+connection.html
+choix.html
+traitement_deconnection.php
