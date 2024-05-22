@@ -74,3 +74,6 @@ traitement_formulaire.php
 connection.html
 traitement_connection.php
 Update barrerecherche.php 
+
+22/05/2024 :
+traitement_formulaire.php
