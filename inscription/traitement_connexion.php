@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$mot_de_passe = $_POST['mdp']??'';
 
 	$dossier=$email;
-	$fichier=$email.'/donnees_inscription.txt';
+	$fichier=$email.'/donnees.csv';
 	echo $email.'<br>';
 	echo $mot_de_passe.'<br>';
 	
