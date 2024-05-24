@@ -84,3 +84,10 @@ traitement_deconnection.php
 23/05/2024 :
 redirection.php
 traitement_connection.php
+
+24/05/2024 :
+supression jsflitre.js
+supression barrerecherche.php
+accueil.php
+filtreaccueil.js
+accueil.css
