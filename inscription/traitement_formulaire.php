@@ -19,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info\n";
 
 	// Crée le dossier avec le nom de l'email
-	if (!is_dir(users/$email)){
-		mkdir($email);
+	if (!is_dir('users/'.$email)){
+		mkdir('user'/.$email);
 		}
 
 	// Le fichier où les donnees sont enregistrées    
-	$fichier = $email.'/donnees.csv';
+	$fichier = 'user/'.$email.'/donnees.csv';
 	
 	// Ecrit dans le fichier les données entrée a l'inscriprion
 	$file = fopen($fichier, 'a');
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!empty($_FILES['images']['name'][0])) {
 		foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
 			$fileName = basename($_FILES['images']['name'][$key]);
-			$targetFilePath = $email . '/' . $fileName;
+			$targetFilePath = 'user/'.$email . '/' . $fileName;
 
 			// Déplace le fichier vers le dossier cible
 			if (move_uploaded_file($tmp_name, $targetFilePath)) {
