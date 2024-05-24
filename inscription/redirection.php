@@ -7,5 +7,5 @@ if (!isset($_SESSION['redirect_to'])){
 }
 
 // Redirige vers la page de connexion
-header("Location: connection.html");
+header("Location: connexion.html");
 ?>
