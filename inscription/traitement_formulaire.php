@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		setcookie('VIP', 'true', time() + (10 * 365 * 24 * 60 * 60), '/');
 	}
 	
-	header("Location: connection.html");
+	header("Location: connexion.html");
 	exit;
 }
 ?>
