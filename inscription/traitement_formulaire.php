@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 
 	// Le fichier où les donnees sont enregistrées    
-	$fichier = $email.'/donnees_inscription.txt';
+	$fichier = $email.'/donnees.csv';
 	
 	// Ecrit dans le fichier les données entrée a l'inscriprion
 	$file = fopen($fichier, 'a');
