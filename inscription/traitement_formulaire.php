@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info\n";
 
 	// Crée le dossier avec le nom de l'email
-	if (!is_dir($email)){
+	if (!is_dir(users/$email)){
 		mkdir($email);
 		}
 
