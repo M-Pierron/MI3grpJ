@@ -10,7 +10,7 @@ function recupinfo($nomfichier) {
 
         if ($ligne !== false) {
             $infos = [
-			'pseudo' => $ligne[4],'sexe' => strtolower($ligne[6])];
+			'pseudo' => $ligne[7],'sexe' => strtolower($ligne[4]),'mail' =>$ligne[0]];
             return  $infos;
 			//implode(' ', $infos);
         }
@@ -64,11 +64,11 @@ if (isset($_GET['recherche'])) {
         foreach ($results as $result) {
 			$pseudo = $result['pseudo'];
 			$sexe = htmlspecialchars($result['sexe']);
+			$email= htmlspecialchars($result['mail']);
             // Si une recherche a été effectuée, filtrer les résultats
             if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
-				echo "<li class=\"$sexe\">" . htmlspecialchars($pseudo) . "</li>";
-				/*echo "<li><a href="profil.php?email=<?php echo emailduprofil; ?>">
-				<?php echo htmlspecialchars($result); ?></a></li>";*/
+				 //echo "<li class=\"$sexe\">" . htmlspecialchars($pseudo) . "</li>";
+				echo "<li><a href='profil.php?email=$email'>" . htmlspecialchars($pseudo) . "</a></li>";
             }
         }
 	?>
