@@ -62,13 +62,13 @@ if (isset($_GET['recherche'])) {
 	<ul>
 	<?php
         foreach ($results as $result) {
-			$pseudo = $result['pseudo'];
+			$pseudo = htmlspecialchars($result['pseudo']);
 			$sexe = htmlspecialchars($result['sexe']);
 			$email= htmlspecialchars($result['mail']);
             // Si une recherche a été effectuée, filtrer les résultats
             if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
 				 //echo "<li class=\"$sexe\">" . htmlspecialchars($pseudo) . "</li>";
-				echo "<li><a href='profil.php?email=$email'>" . htmlspecialchars($pseudo) . "</a></li>";
+				echo "<li class=\"$sexe\"><a href=\"profil.php?email=$email\">$pseudo</a></li>";
             }
         }
 	?>
