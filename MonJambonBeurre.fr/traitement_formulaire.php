@@ -22,6 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_dir('users/'.$email)){
         mkdir('users/'.$email);
     }
+    else{
+        header("Location: inscription.html");
+        exit;
+    }
 
     // Le fichier où les donnees sont enregistrées    
     $fichier = 'users/'.$email.'/donnees.csv';
