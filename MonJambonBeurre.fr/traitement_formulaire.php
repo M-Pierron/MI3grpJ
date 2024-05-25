@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Crée le dossier avec le nom de l'email
     if (!is_dir('users/'.$email)){
         mkdir('users/'.$email);
+        mkdir(''users/'.$email.'/photos');
     }
     else{
         header("Location: inscription.html");
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_FILES['images']['name'][0])) {
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
             $fileName = basename($_FILES['images']['name'][$key]);
-            $targetFilePath = 'users/'.$email . '/' . $fileName;
+            $targetFilePath = 'users/'.$email . '/photos/' . $fileName;
 
             // Déplace le fichier vers le dossier cible
             if (move_uploaded_file($tmp_name, $targetFilePath)) {
