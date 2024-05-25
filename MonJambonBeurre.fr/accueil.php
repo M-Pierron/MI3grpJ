@@ -22,7 +22,6 @@ function recupinfo($nomfichier) {
 
 $results = [];
 foreach ($tablesdossiers as $tablesdossiers) {
-	//$sousdossier=$tablesdossiers;
 	$fichier="Monjambonbeurre.fr/users/$tablesdossiers/donnees.csv";
     $result = recupinfo($fichier);
     if ($result !== null) {
