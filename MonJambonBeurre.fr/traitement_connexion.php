@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Récupère les données du formulaire
 	$email = $_POST['Email']?? '';
 	$mot_de_passe = $_POST['mdp']??'';
+	@_SESSION['email']=@email;
 
 	$dossier='users/'.$email;
 	 $fichier='users/'.$email.'/donnees.csv';
