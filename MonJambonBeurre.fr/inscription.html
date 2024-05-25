@@ -12,11 +12,11 @@
 	</tr>
 <tr>
 	<td>Email :</td>
-	<td><input type="text" name="Email"> </td>
+	<td><input type="text" name="Email" required> </td>
 	</tr>
 <tr>
 	<td>Mot de Passe :</td>
-	<td><input type="password" name="mdp"> </td>
+	<td><input type="password" name="mdp" required> </td>
 	</tr>
 <td colspan="2"> </td>
 <tr>
@@ -24,11 +24,11 @@
 	
 <tr>
 	<td>Nom :</td>
-	<td><input type="text" name="Nom"> </td>
+	<td><input type="text" name="Nom" required> </td>
 	</tr>
 <tr>
 	<td>Prenom :</td>
-	<td><input type="text" name="Prenom"> </td>
+	<td><input type="text" name="Prenom" required> </td>
 	</tr>
 <tr>
 	<td>Sexe :</td>
@@ -40,32 +40,32 @@
 	</tr>
 <tr>
 	<td>Date de naissance :</td>
-	<td><input type="date" name="date_de_naissance"> </td>
+	<td><input type="date" name="date_de_naissance" required> </td>
 	</tr>
 <tr>
 	<td>Adresse complete :</td>
-	<td><input type="text" name="Adresse"> </td>
+	<td><input type="text" name="Adresse" required> </td>
 	</tr>
 	</table>
 	
 <fieldset>
 <legend>Votre Profil :</legend>
 Pseudo :
-<input name="Pseudo" type="text" > <br> <br>
+<input name="Pseudo" type="text" required> <br> <br>
 Profession : 
-<textarea name="Profession" style="width: 300px; height: 17px; resize: none"></textarea> <br> <br>
+<textarea name="Profession" style="width: 300px; height: 17px; resize: none" required></textarea> <br> <br>
 Lieu de residence (pays, region ou eventuellement la ville) : 
-<textarea name="Lieu" style="width: 300px; height: 17px; resize: none"></textarea> <br> <br>
+<textarea name="Lieu" style="width: 300px; height: 17px; resize: none" required></textarea> <br> <br>
 Situation amoureuse ou familiale :<br>
-<textarea name="Situation" style="width: 300px; height: 40px; resize: none"></textarea> <br> <br>
+<textarea name="Situation" style="width: 300px; height: 40px; resize: none" required></textarea> <br> <br>
 Votre description physique :<br>
-<textarea name="Physique" style="width: 300px; height: 100px; resize: none"></textarea>
+<textarea name="Physique" style="width: 300px; height: 100px; resize: none" required></textarea>
 <br> <br>
 Informations personnelles (message d'accueil, citation, traits de caractere, centres d'interet, fumeur ou non, ...) :<br>
-<textarea name="Infos_Perso" style="width: 300px; height: 100px; resize: none"></textarea>
+<textarea name="Infos_Perso" style="width: 300px; height: 100px; resize: none" required></textarea>
 <br> <br>
 Une ou plusieurs photos :<br>
-<input type="file" name="images[]" accept="image/*" multiple>
+<input type="file" name="images[]" accept="image/*" multiple required>
 <br> <br>
 <button type="submit">S'inscrire<img src="image/valide.jpg" width="17" height="17"></button>
 
