@@ -8,7 +8,7 @@ if (!isset($_SESSION["email"])) {
 $envoyeur = htmlspecialchars($_GET["email"]);
 $recepteur = htmlspecialchars($_GET['recepteur']);
 
-$fichier_messages = "MonJambonbeurre.fr/users/$envoyeur/messages/$recepteur.csv";
+$fichier_messages = "users/$envoyeur/messages/$recepteur.csv";
 
 if (file_exists($fichier_messages)) {
     $fp = fopen($fichier_messages, "r");

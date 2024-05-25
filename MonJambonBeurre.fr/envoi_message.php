@@ -13,16 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $deleted = 0; 
 
     if (!empty($message) && !empty($recepteur)) {
-        $dossier_envoyeur = "MonJambonbeurre.fr/users/$envoyeur/messages";
+        $dossier_envoyeur = "users/$envoyeur/messages";
         if (!file_exists($dossier_envoyeur)) {
             mkdir($dossier_envoyeur, 0777, true);
         }
-        $fichier_envoyeur = "$dossier_envoyeur/$recepteur.csv";
+        $fichier_envoyeur = "$recepteur.csv";
         $fp_envoyeur = fopen($fichier_envoyeur, 'a');
         fputcsv($fp_envoyeur, [$timestamp, $envoyeur, $message, $deleted]);
         fclose($fp_envoyeur);
 
-        $dossier_recepteur = "MonJambonbeurre.fr/users/$recepteur/messages";
+        $dossier_recepteur = "users/$recepteur/messages";
         if (!file_exists($dossier_recepteur)) {
             mkdir($dossier_recepteur, 0777, true);
         }

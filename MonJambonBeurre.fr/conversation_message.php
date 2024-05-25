@@ -1,22 +1,38 @@
+<?php
+session_start();
+if (!isset($_SESSION["email"])) {
+    http_response_code(403);
+    exit("Non autorisé");
+}
+
+$recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : null;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Conversation avec <?php echo htmlspecialchars($recepteur); ?></title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div style="float: left; width: 30%;">
+        <?php include("conversations.php"); ?>
+    </div>
 
-<?php 
-require_once("fonctioncookie.php");
-if (estabonnevip()) :
-?>
-    <div id="messagesContainer"></div>
+    <div style="float: left; width: 70%;">
+        <?php if ($recepteur) : ?>
+            <div id="messagesContainer"></div>
 
-    <form id="messageForm" method="POST">
-        <textarea name="message" id="messageInput" required></textarea>
-        <input type="hidden" name="email" value="<?php echo htmlspecialchars($_POST['email']); ?>">
-        <input type="hidden" name="recepteur" value="<?php echo htmlspecialchars($_POST['email-recepteur']); ?>">
-        <input type="submit" value="Envoyer">
-    </form>
+            <form id="messageForm" method="POST">
+                <textarea name="message" id="messageInput" required></textarea>
+                <input type="hidden" name="email" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+                <input type="hidden" name="recepteur" value="<?php echo htmlspecialchars($recepteur); ?>">
+                <input type="submit" value="Envoyer">
+            </form>
+        <?php else : ?>
+            <p>Sélectionnez une conversation dans la liste à gauche pour afficher les messages.</p>
+        <?php endif; ?>
+    </div>
 
     <script>
         $('#messageForm').submit(function(e) {
@@ -34,22 +50,20 @@ if (estabonnevip()) :
         });
 
         function recupMessages() {
-            $.ajax({
-                url: `recuperation_messages.php?email=${encodeURIComponent('<?php echo $_POST['email']; ?>')}&recepteur=${encodeURIComponent('<?php echo $_POST['email-recepteur']; ?>')}`,
-                type: 'GET',
-                success: function(response) {
-                    $('#messagesContainer').html(response);
-                }
-            });
+            var recepteur = '<?php echo $recepteur; ?>';
+            if (recepteur) {
+                $.ajax({
+                    url: `recuperation_messages.php?email=${encodeURIComponent('<?php echo $_POST['email']; ?>')}&recepteur=${encodeURIComponent(recepteur)}`,
+                    type: 'GET',
+                    success: function(response) {
+                        $('#messagesContainer').html(response);
+                    }
+                });
+            }
         }
 
         recupMessages();
         setInterval(recupMessages, 1000);
     </script>
-<?php else : ?>
-    <p>Pour débloquer cette fonctionnalité, veuillez vous abonner</p>
-    <a href="boutique.php">Boutique</a>
-<?php endif; ?>
-
 </body>
 </html>
