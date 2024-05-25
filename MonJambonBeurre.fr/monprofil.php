@@ -22,10 +22,14 @@ if(!$_SESSION["email"]){
 				<input type="submit" value="Desactiver le profil">
 			</form>
 			<form action="suppressionprofil.php" method="post">
+				<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
 				<input type="submit" value="Supprimer le profil">
 			</form>
 		<a href="mesbloques.php"> Bloques </a>
-		<a href="mesvusdeprofil.php"> Bloques </a>
-		<a href="editionprofil.php"> <img src="image/editing.jpg" alt="image"/> </a>
+		<a href="mesvusdeprofil.php"> Vus de profil </a>
+		<form action="editionprofil.php" method="post">
+			<input type="hidden" name="email_session" value="<?php echo $_SESSION; ?>">
+			<input type="image" src="image/editing.jpg" alt="Modifier le profil">
+		</form>
 	</body> 
 </html>

@@ -5,8 +5,8 @@ if (!isset($_SESSION["email"])) {
     exit("Non autorisé");
 }
 
-$envoyeur = $_SESSION["email"];
-$recepteur = $_GET['recepteur'];
+$envoyeur = htmlspecialchars($_GET["email"]);
+$recepteur = htmlspecialchars($_GET['recepteur']);
 
 $fichier_messages = "MonJambonbeurre.fr/users/$envoyeur/messages/$recepteur.csv";
 
@@ -16,18 +16,22 @@ if (file_exists($fichier_messages)) {
         $date = $data[0];
         $email_envoyeur = $data[1];
         $message = $data[2];
-		if ($data[3]) {		
-			echo "<p><strong>$email_envoyeur</strong> [$date]: $message</p>";
-			if ($email_envoyeur == $envoyeur) {
-				echo "<form action='suppressionmessage.php' method='post'>
-						<input type='submit' value='Supprimer un message'>
-					</form>"; 
-			}
-		}
-		else {
-			echo "<p><strong>$email_envoyeur</strong> [$date] : Message supprimé </p>";
-		}
-	}
+        $deleted = $data[3];
+
+        if ($deleted == 1) {
+            echo "<p><strong>$email_envoyeur</strong> [$date]: Message supprimé</p>";
+        } else {
+            echo "<p><strong>$email_envoyeur</strong> [$date]: $message</p>";
+            if ($email_envoyeur == $envoyeur) {
+                echo "<form action='suppressionmessage.php' method='post'>
+                        <input type='hidden' name='timestamp' value='$date'>
+                        <input type='hidden' name='envoyeur' value='$envoyeur'>
+                        <input type='hidden' name='recepteur' value='$recepteur'>
+                        <input type='submit' value='Supprimer un message'>
+                    </form>";
+            }
+        }
+    }
     fclose($fp);
 } else {
     echo "<p>Aucun message trouvé.</p>";

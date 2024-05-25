@@ -41,11 +41,11 @@ $profiles = getProfiles($directory);
             <tr>
                 <td><?php echo htmlspecialchars($profile['email']); ?></td>
                 <td>
-                    <form action="edit_profile.php" method="GET">
+                    <form action="editionprofil.php" method="POST">
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Éditer">
                     </form>
-                    <form action="delete_profile.php" method="POST>
+                    <form action="suppressionprofil.php" method="POST>
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce profil ?');">
                     </form>

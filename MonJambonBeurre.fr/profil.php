@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
         ?>
 		
     </table>
-    <form action="boutonmessage.php" method="post">
+    <form action="conversation_message.php" method="post">
+		<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
         <input type="submit" value="Envoyer un message">
     </form>
     <form action="profil.php?email=<?php echo htmlspecialchars($email_a_afficher); ?>" method="post">
