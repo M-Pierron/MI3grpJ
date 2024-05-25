@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if ($email === $tab[0] && $mot_de_passe === $tab[1]){
 			$_SESSION['email'] = $email;
 			$_SESSION['loggedin'] = true;
-			$redirect_to = isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : 'https://cytech.cyu.fr/'; //page apres s'etre connecter
+			$redirect_to = isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : 'accueil.php'; //page apres s'etre connecter
 				unset($_SESSION['redirect_to']); // Nettoie la session
 
 				// Redirige vers la page initiale
