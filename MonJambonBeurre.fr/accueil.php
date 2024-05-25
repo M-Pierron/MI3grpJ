@@ -1,5 +1,5 @@
 <?php
-$dossier='Monjambonbuerre/users';
+$dossier='Monjambonbeurre.fr/users';
 $tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
 // Fonction pour lire et extraire les informations du profil
@@ -23,7 +23,7 @@ function recupinfo($nomfichier) {
 $results = [];
 foreach ($tablesdossiers as $tablesdossiers) {
 	//$sousdossier=$tablesdossiers;
-	$fichier="Monjambonbuerre/users/$tablesdossiers/donnees.csv";
+	$fichier="Monjambonbeurre.fr/users/$tablesdossiers/donnees.csv";
     $result = recupinfo($fichier);
     if ($result !== null) {
         $results[] = $result;
@@ -57,7 +57,7 @@ if (isset($_GET['recherche'])) {
     <input type="radio" name="sexe" value="femme"  /> Femme
 	</div>
 	<form method="GET" action=" ">
-		<button type='submit' name='déconnexion'>Se déconnecter</button>
+		<button type='submit' name='deconnexion'>Se déconnecter</button>
 	</form>
 	<ul>
 	<?php
