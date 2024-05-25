@@ -13,10 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(is_dir($dossier) && file_exists($fichier)){
 		$contenu=file_get_contents($fichier);
 		$tab = explode("; ", $contenu);
-		echo $tab[0].'<br>';
-		echo $tab[1].'<br>';
-		echo $tab[2].'<br>';
-		
+
 		if ($email === $tab[0] && $mot_de_passe === $tab[1]){
 			$_SESSION['email'] = $email;
 			$_SESSION['loggedin'] = true;
@@ -27,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				header("Location: $redirect_to");
 			}
 		else{
-			echo 'mdp incorrect';
+			header("Location: connexion.html") ;
 			}
 		}
 	else{

@@ -1,9 +1,5 @@
-<?php 
+<?php
 session_start();
-if(!$_SESSION["email"]){
-	header('Location: accueil.php');
-	exit;
-}
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -28,7 +24,7 @@ if(!$_SESSION["email"]){
 		<a href="mesbloques.php"> Bloques </a>
 		<a href="mesvusdeprofil.php"> Vus de profil </a>
 		<form action="editionprofil.php" method="post">
-			<input type="hidden" name="email_session" value="<?php echo $_SESSION; ?>">
+			<input type="hidden" name="email_session" value="<?php echo $_SESSION['email']; ?>">
 			<input type="image" src="image/editing.jpg" alt="Modifier le profil">
 		</form>
 	</body> 

@@ -49,7 +49,7 @@ $profiles = getProfiles($directory);
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce profil ?');">
                     </form>
-                    <form action="conversation_message.php" method="GET">
+                    <form action="messagerie.php" method="GET">
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Messagerie">
                     </form>

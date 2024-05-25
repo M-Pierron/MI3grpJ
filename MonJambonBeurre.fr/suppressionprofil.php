@@ -9,7 +9,7 @@ function supprimer_dossier($directory) {
     if (!is_dir($directory)) {
         return false;
     }
-    
+
     $contenu = glob($directory . '/*');
     foreach ($contenu as $element) {
         if (is_dir($element)) {
@@ -18,11 +18,11 @@ function supprimer_dossier($directory) {
             unlink($element);
         }
     }
-    
+
     return rmdir($directory);
 }
 
-$email_session = $_SESSION["email"];
+$email_session = $_POST["email"];
 supprimer_dossier("users/$email_session"); 
 
 header("Location: accueil.php");

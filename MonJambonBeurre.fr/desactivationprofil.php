@@ -5,8 +5,8 @@
 		exit;
 	}
 	$email_session = $_SESSION["email"];
-	$fileold = "MonJambonbeurre.fr/users/$email_session";
-	$filenew = "MonJambonbeurre.fr/archive/users/$email_session"; 
+	$fileold = "users/$email_session";
+	$filenew = "archive/users/$email_session"; 
 	rename($fileold, $filenew);
 	header("Location: accueil.php");
 	exit;

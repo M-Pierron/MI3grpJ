@@ -1,5 +1,6 @@
 <?php
-$dossier='Monjambonbeurre.fr/users';
+session_start();
+$dossier='users';
 $tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
 // Fonction pour lire et extraire les informations du profil
@@ -22,7 +23,8 @@ function recupinfo($nomfichier) {
 
 $results = [];
 foreach ($tablesdossiers as $tablesdossiers) {
-	$fichier="Monjambonbeurre.fr/users/$tablesdossiers/donnees.csv";
+	//$sousdossier=$tablesdossiers;
+	$fichier="users/$tablesdossiers/donnees.csv";
     $result = recupinfo($fichier);
     if ($result !== null) {
         $results[] = $result;
@@ -33,31 +35,61 @@ foreach ($tablesdossiers as $tablesdossiers) {
 
 // Vérifier si une recherche a été effectuée
 $recherche = '';
-if (isset($_GET['recherche'])) {
-    $recherche = strtolower(trim($_GET['recherche']));
+if (isset($_POST['recherche'])) {
+    $recherche = strtolower(trim($_POST['recherche']));
 }
+// vérifie si l'utilisateur est abonné
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+$is_abonne = true;
+
+if ($email) {
+    $fichier_abonnement = "users/$email/abonnement.txt";
+    if (file_exists($fichier_abonnement)) {
+        $date_abonnement = file_get_contents($fichier_abonnement);
+        $date_expiration = date('Y-m-d', strtotime($date_abonnement . ' +1 year'));
+        $date_actuelle = date('Y-m-d');
+        
+        if ($date_actuelle <= $date_expiration) {
+            $is_abonne = false;
+        }
+    }
+}
+if (is_file('users/$_SESSION["email"]/admin.csv')) {
+ echo "<form method='POST' action='panel_admin.php'><button type='submit'>Admin</button></form>";
+}
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="accueil.css" rel="stylesheet">
-<script src="filtreaccueil.js" defer></script>
+<link href="CSS/accueil.css" rel="stylesheet">
+<script src="JS/filtreaccueil.js" defer></script>
 </head>
 <body>
-	<form method="GET" action=" ">
+	<form method="POST" action=" ">
 		<input type="text" name="recherche" placeholder="Rechercher..." />
 		<input type="submit" value="Valider" />
 	</form>
 	<div>
-    <input type="radio" name="sexe" value="all" checked="checked" /> Tous
-    <input type="radio" name="sexe" value="homme"  /> Homme
-    <input type="radio" name="sexe" value="femme"  /> Femme
+		<input type="radio" name="sexe" value="all" checked="checked" /> Tous
+		<input type="radio" name="sexe" value="homme"  /> Homme
+		<input type="radio" name="sexe" value="femme"  /> Femme
 	</div>
-	<form method="GET" action="deconnexion.html">
-		<button type='submit' name='deconnexion'>Se déconnecter</button>
+	<?php if (!$is_abonne): ?>
+		<form method="POST" action="abonnement.php" align="center">
+			<button type="submit">ABONNEZ-VOUS</button>
+		</form>
+	<?php endif; ?>
+	<form method="POST" action="traitement_deconnexion.php">
+	<button type="submit" id="deco">Deconnexion<img src="image/croix.png" width="17" height="17"></button>
 	</form>
+	<form method="POST" action="conversation_message.php">
+		<button type="submit" id="msg">mesmessages</button>
+		<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+	</form>
+	
 	<ul>
 	<?php
         foreach ($results as $result) {

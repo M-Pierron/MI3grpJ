@@ -17,7 +17,7 @@ $email_session = $_POST['email_session'];
 		<form action="edition.php" method="post">
 			<table>
 				<?php
-					require_once("fonctionprofile.php"); 
+					require_once("fonctionprofil.php"); 
 					affichage($email_session, true, true);  
 				?>
 			</table>
@@ -26,7 +26,7 @@ $email_session = $_POST['email_session'];
 		</form>
 		<form action="upload_image.php" method="post" enctype="multipart/form-data">
 			<?php
-			$repertoire_photos = "MonJambonbeurre.fr/utilisateurs/$email_session/photos/";
+			$repertoire_photos = "users/$email_session/photos/";
 			if (is_dir($repertoire_photos)) {
 				$photos = scandir($repertoire_photos);
 				foreach ($photos as $photo) {

@@ -1,12 +1,7 @@
 <?php
-	session_start();
-	if (!isset($_SESSION["email"])) {
-		header('Location: accueil.php');
-		exit;
-	}
-
+	
 	function affichage($email_session, $verif, $prive) {
-		$fp = fopen("MonJambonbeurre.fr/users/$email_session/donnees", "r");
+		$fp = fopen("users/$email_session/donnees.csv", "r+");
 		$trouve = false;
 		while (($data = fgetcsv($fp, 1000, ";")) !== FALSE && !$trouve) {
 			if ($data[0] == $email_session) {
@@ -37,7 +32,7 @@
 					$description = "<textarea id='description' name='description'>$description</textarea>";
 					$citation = "<textarea id='citation' name='citation'>$citation</textarea>";
 				} else {
-					$dossier_photos = "MonJambonbeurre.fr/users/$email_session/photos/";  
+					$dossier_photos = "users/$email_session/photos/";  
 					$photos = scandir($dossier_photos);
 					foreach ($photos as $photo) {
 						if ($photo !== '.' && $photo !== '..') {
