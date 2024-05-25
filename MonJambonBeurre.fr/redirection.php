@@ -1,11 +1,19 @@
 <?php
 session_start();
-
-// Enregistre la page de départ dans la session
-if (!isset($_SESSION['redirect_to'])){
-	$_SESSION['redirect_to'] = $_SERVER['HTTP_REFERER'];
+// Regarde si la session est ouverte
+if (isset($_SESSION['email']){
+	// Redirige vers la page d'acceuil
+	header("Location: acceuil.php");
+	exit;
 }
 
-// Redirige vers la page de connexion
-header("Location: connexion.html");
+else{
+	// Enregistre la page de départ dans la session
+	if (!isset($_SESSION['redirect_to'])){
+		$_SESSION['redirect_to'] = $_SERVER['HTTP_REFERER'];
+	}
+
+	// Redirige vers la page de connexion
+	header("Location: connection.html");
+}
 ?>
