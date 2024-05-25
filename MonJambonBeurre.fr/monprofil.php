@@ -26,6 +26,6 @@ if(!$_SESSION["email"]){
 			</form>
 		<a href="mesbloques.php"> Bloques </a>
 		<a href="mesvusdeprofil.php"> Bloques </a>
-		<a href="editionprofil.php"> <img src="editing.jpg" alt="image"/> </a>
+		<a href="editionprofil.php"> <img src="image/editing.jpg" alt="image"/> </a>
 	</body> 
 </html>
