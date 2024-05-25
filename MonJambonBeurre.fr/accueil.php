@@ -55,7 +55,7 @@ if (isset($_GET['recherche'])) {
     <input type="radio" name="sexe" value="homme"  /> Homme
     <input type="radio" name="sexe" value="femme"  /> Femme
 	</div>
-	<form method="GET" action=" ">
+	<form method="GET" action="deconnexion.html">
 		<button type='submit' name='deconnexion'>Se déconnecter</button>
 	</form>
 	<ul>
