@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Crée le dossier avec le nom de l'email
     if (!is_dir('users/'.$email)){
         mkdir('users/'.$email);
-        mkdir(''users/'.$email.'/photos');
+        mkdir('users/'.$email.'/photos');
     }
     else{
         header("Location: inscription.html");
