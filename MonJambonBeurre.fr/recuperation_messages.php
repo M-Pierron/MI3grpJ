@@ -1,15 +1,16 @@
 <?php
 session_start();
+// -- Verificateur de connexion --
 if (!isset($_SESSION["email"])) {
-    http_response_code(403);
-    exit("Non autorisé");
+    header('Location: accueil.php');
+    exit;
 }
 
 $envoyeur = htmlspecialchars($_GET["email"]);
 $recepteur = htmlspecialchars($_GET['recepteur']);
 
 $fichier_messages = "users/$envoyeur/messages/$recepteur.csv";
-
+// -- recupere les messages, pour les afficher --
 if (file_exists($fichier_messages)) {
     $fp = fopen($fichier_messages, "r");
     while (($data = fgetcsv($fp, 1000, ",")) !== FALSE) {
@@ -17,7 +18,7 @@ if (file_exists($fichier_messages)) {
         $email_envoyeur = $data[1];
         $message = $data[2];
         $deleted = $data[3];
-
+        // -- Verifie la suppression, sinon l'affiche --
         if ($deleted == 1) {
             echo "<p><strong>$email_envoyeur</strong> [$date]: Message supprimé</p>";
         } else {
