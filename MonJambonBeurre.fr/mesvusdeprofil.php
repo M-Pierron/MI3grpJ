@@ -5,6 +5,14 @@ if (!$_SESSION["email"]) {
     header('Location: accueil.php');
     exit;
 }
+// -- Si ils sont bloqués, ou non abonnés, les rediriges --
+/*require_once('fonctionbloquer.php');
+require_once('fonction_abonnee.php');
+if (est_bloquer($_SESSION["email"], $_GET["email"]) || !(est_abonne($_SESSION["email"]) || est_femme($_SESSION["email"]))) {
+    header('Location: accueil.php');
+    exit;
+}*/
+
 $email_session = $_SESSION["email"];
 $fichier_log = "MonJambonbeurre.fr/users/$email_session/log_vu";
 
