@@ -1,5 +1,5 @@
 <?php
-	// vérifie si l'utilisateur est abonné
+	
 function est_abonnee($email){
 	$est_abonne = false;
 	$fichier_abonnement = "users/$email/abonnement.txt";
