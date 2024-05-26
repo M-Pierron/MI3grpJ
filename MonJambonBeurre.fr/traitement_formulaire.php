@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $situation = $_POST['Situation'];
     $physique = $_POST['Physique'];
     $info = $_POST['Infos_Perso'];
-
-    $donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info\n";
+    $date_inscription = date('Y-m-d');
+    $donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info; $date_inscription\n";
 
     // Crée le dossier avec le nom de l'email
     if (!is_dir('users/'.$email)){
