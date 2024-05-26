@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Liste des utilisateurs bloqués</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
