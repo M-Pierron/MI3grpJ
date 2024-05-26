@@ -5,12 +5,12 @@ if (!isset($_SESSION["email"])) {
     exit("Non autorisé");
 }
 // -- Si ils sont bloqués, ou non abonnés, les rediriges --
-require_once('fonctionbloquer.php');
+/*require_once('fonctionbloquer.php');
 require_once('fonction_abonnee.php');
-if (est_bloquer($_SESSION["email"], $_GET["email"]) || !(est_abonne($_SESSION["email"]) || !(est_femme($_SESSION["email"]) {
+if (est_bloquer($_SESSION["email"], $_GET["email"]) || !(est_abonne($_SESSION["email"]) || est_femme($_SESSION["email"]))) {
     header('Location: accueil.php');
     exit;
-    }
+}*/
 											     
 $email = isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : null;
 // -- Recupere les conversations deja existantes -- 
