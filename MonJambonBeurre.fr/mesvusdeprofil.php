@@ -1,5 +1,6 @@
 <?php
 session_start();
+// -- Verificateur de connexion --
 if (!$_SESSION["email"]) {
     header('Location: accueil.php');
     exit;
@@ -8,7 +9,7 @@ $email_session = $_SESSION["email"];
 $fichier_log = "MonJambonbeurre.fr/users/$email_session/log_vu";
 
 $emails_vus = [];
-
+// -- Stock les vues de profil dans un tableau -- 
 if (file_exists($fichier_log)) {
     $emails_vus = file($fichier_log, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 }
@@ -29,6 +30,7 @@ if (file_exists($fichier_log)) {
 		<?php else : ?>
 			<ul>
 				<?php foreach ($emails_vus as $email_vu) : ?>
+					<! -- Affiche les profils -->
 					<li><?php echo htmlspecialchars($email_vu); ?></li>
 				<?php endforeach; ?>
 			</ul>
