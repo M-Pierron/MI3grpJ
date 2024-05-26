@@ -1,11 +1,11 @@
-/* Reset CSS */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5; /* Light background to enhance readability */
@@ -13,7 +13,7 @@ body {
     line-height: 1.6;
 }
 
-/* Container */
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -21,7 +21,7 @@ body {
     padding: 20px;
 }
 
-/* Header */
+
 header {
     background-color: #002395; /* French blue */
     color: #ffffff;
@@ -46,7 +46,7 @@ header nav a:hover {
     text-decoration: underline;
 }
 
-/* Main Content */
+
 main {
     padding: 20px;
     background-color: #ffffff;
@@ -65,7 +65,7 @@ main p {
     margin-bottom: 20px;
 }
 
-/* Footer */
+
 footer {
     background-color: #002395;
     color: #ffffff;
@@ -80,7 +80,7 @@ footer p {
     margin: 0;
 }
 
-/* Buttons */
+
 button {
     background-color: #ED2939;
     color: #ffffff;
@@ -96,7 +96,7 @@ button:hover {
     background-color: #bf1e2e;
 }
 
-/* Forms */
+
 form {
     margin: 20px 0;
 }
@@ -127,7 +127,7 @@ form input[type="submit"]:hover {
     background-color: #001f7a;
 }
 
-/* Table Styles */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -157,7 +157,7 @@ table tr:hover {
     background-color: #e6f7ff;
 }
 
-/* Misc */
+
 hr {
     border: 0;
     height: 1px;
