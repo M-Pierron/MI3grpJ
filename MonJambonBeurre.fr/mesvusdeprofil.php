@@ -17,6 +17,7 @@ if (file_exists($fichier_log)) {
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
     <title>Liste des utilisateurs ayant vu votre profil</title>
 </head>
 <body>
