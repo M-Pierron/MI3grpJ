@@ -53,11 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo 'Aucun fichier téléchargé.';
     }
     
-    // Met l'attribut VIP si c'est une femme
-    if ($sexe == "Femme") {
-        setcookie('VIP', 'true', time() + (10 * 365 * 24 * 60 * 60), '/');
-    }
-    
     header("Location: connexion.html");
     exit;
 }
