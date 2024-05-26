@@ -1,11 +1,12 @@
 <?php
+// -- Verification de connexion --
 if (!isset($_SESSION["email"])) {
     http_response_code(403);
     exit("Non autorisé");
 }
 
 $email = isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : null;
-
+// -- Recupere les conversations deja existantes -- 
 function recupererConversations($email) {
     $dossier_utilisateur = "users/$email/messages";
     $conversations = [];
@@ -21,7 +22,7 @@ function recupererConversations($email) {
 
     return $conversations;
 }
-
+// -- Stock les résultats --
 $conversations = recupererConversations($email);
 ?>
 
@@ -34,6 +35,7 @@ $conversations = recupererConversations($email);
 <body>
     <h2>Conversations</h2>
     <ul>
+	    <! -- Affiche les discussions -->
         <?php foreach ($conversations as $conversation) : ?>
             <li><a href="conversation_message.php?recepteur=<?php echo htmlspecialchars($conversation); ?>"><?php echo htmlspecialchars($conversation); ?></a></li>
         <?php endforeach; ?>
