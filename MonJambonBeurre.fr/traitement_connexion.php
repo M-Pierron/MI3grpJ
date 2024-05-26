@@ -1,4 +1,5 @@
 <?php
+// -- Si le formulaire est rempli, verifie et execute la connexion --
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	session_start();
 	
