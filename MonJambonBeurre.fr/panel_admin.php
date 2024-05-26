@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION["email"]) || $_SESSION["role"] !== 'admin') {
+if (!isset($_SESSION["email"])) {
     header('Location: accueil.php');
     exit;
 }
 
-$directory = "MonJambonbeurre.fr/users/";
+$directory = "users";
 
 function getProfiles($directory) {
     $profiles = [];
@@ -13,7 +13,7 @@ function getProfiles($directory) {
         if ($user !== '.' && $user !== '..') {
             $profile = [
                 'email' => $user,
-                'data_file' => "$directory/$user/donnees"
+                'data_file' => "$directory/$user/donnees.csv"
             ];
             $profiles[] = $profile;
         }
@@ -28,7 +28,6 @@ $profiles = getProfiles($directory);
 <html>
 <head>
     <title>Panneau d'Administration</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Panneau d'Administration</h1>
@@ -42,7 +41,7 @@ $profiles = getProfiles($directory);
                 <td><?php echo htmlspecialchars($profile['email']); ?></td>
                 <td>
                     <form action="editionprofil.php" method="POST">
-                        <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
+                        <input type="hidden" name="email_session" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Éditer">
                     </form>
                     <form action="suppressionprofil.php" method="POST>

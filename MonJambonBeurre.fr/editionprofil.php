@@ -44,6 +44,6 @@ $email_session = $_POST['email_session'];
 			<input type="submit" value="Modifier">
 		</form>
 
-		<a href="profil.php"> <img src="image/retour.jpg" alt="image"/> </a>
+		<a href="accueil.php"> <img src="image/retour.jpg" alt="image"/> </a>
 	</body> 
 </html>

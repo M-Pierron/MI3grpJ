@@ -12,7 +12,7 @@ session_start();
 		<table>
 		<?php 
 			require_once("fonctionprofil.php"); 
-		   affichage($_SESSION["email"], false, true); 
+			affichage($_SESSION["email"], false, true); 
 		 ?>
 		</table>
 			<form action="desactivationprofil.php" method="post">
@@ -22,12 +22,12 @@ session_start();
 				<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
 				<input type="submit" value="Supprimer le profil">
 			</form>
-		<a href="mesbloques.php"> Bloques </a>
-		<a href="mesvusdeprofil.php"> Vus de profil </a>
-		<form action="editionprofil.php" method="post">
-			<input type="hidden" name="email_session" value="<?php echo $_SESSION['email']; ?>">
-			<input type="image" src="image/editing.jpg" alt="Modifier le profil">
-		</form>
-		<a href="accueil.php"> accueil </a>
+			<a href="mesbloques.php"> Bloques </a>
+			<a href="mesvusdeprofil.php"> Vus de profil </a>
+			<form action="editionprofil.php" method="post">
+				<input type="hidden" name="email_session" value="<?php echo $_SESSION['email']; ?>">
+				<input type="image" src="image/editing.jpg" alt="Modifier le profil">
+			</form>
+			<a href="accueil.php"> accueil </a>
 	</body> 
 </html>

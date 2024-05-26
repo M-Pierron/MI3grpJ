@@ -52,41 +52,57 @@ if (file_exists($fichier_abonnement))		{
 		$is_abonne = false;
 	}
 }
-if (is_file('users/$_SESSION["email"]/admin.csv')) {
- echo "<form method='POST' action='panel_admin.php'><button type='submit'>Admin</button></form>";
-}
 
+//vérifie si administrateur 
+$fichier_admin="users/$email/admin.csv";
+$est_admin=FALSE;
+if (file_exists($fichier_admin)){
+	$est_admin=TRUE;
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="CSS/accueil.css" rel="stylesheet">
+<link href="CSS/accueil.css?v=1.1" rel="stylesheet">
 <script src="JS/filtreaccueil.js" defer></script>
 </head>
 <body>
-	<form method="POST" action=" ">
-		<input type="text" name="recherche" placeholder="Rechercher..." />
-		<input type="submit" value="Valider" />
-	</form>
-	<div>
+	<div class="div1">
+		<form method="POST" action=" ">
+			<input type="text" name="recherche" placeholder="Rechercher..." />
+			<input type="submit" value="Valider" />
+		</form>
+		
 		<input type="radio" name="sexe" value="all" checked="checked" /> Tous
 		<input type="radio" name="sexe" value="homme"  /> Homme
 		<input type="radio" name="sexe" value="femme"  /> Femme
+	</div>
+	<div class="div2">
+		<form method="POST" action="conversation_message.php">
+			<button type="submit" id="msg">mesmessages</button>
+			<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+		</form>
+		<form method="POST" action="monprofil.php">
+			<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+			<button type="submit">Mon profil</button>
+		</form>
+		<form method="POST" action="traitement_deconnexion.php">
+			<button type="submit" id="deco">Deconnexion<img src="image/croix.png" width="17" height="17"></button>
+		</form>
+	<?php if ($est_admin): ?>
+		<form method="POST" action="panel_admin.php">
+			<button type="submit" id="adm" value="administrateur">Admin</button>
+		<form/>
+	<?php endif; ?>
 	</div>
 	<?php if (!$is_abonne): ?>
 		<form method="POST" action="abonnement.php" align="center">
 			<button type="submit">ABONNEZ-VOUS</button>
 		</form>
 	<?php endif; ?>
-	<form method="POST" action="traitement_deconnexion.php">
-	<button type="submit" id="deco">Deconnexion<img src="image/croix.png" width="17" height="17"></button>
-	</form>
-	<form method="POST" action="conversation_message.php">
-		<button type="submit" id="msg">mesmessages</button>
-		<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
-	</form>
+	
 	
 	<ul>
 	<?php
@@ -94,10 +110,10 @@ if (is_file('users/$_SESSION["email"]/admin.csv')) {
             $pseudo = htmlspecialchars($result['pseudo']);
             $sexe = htmlspecialchars($result['sexe']);
             $email = htmlspecialchars($result['mail']);
-
-            if ($email !== $_SESSION['email']) {
+			require_once('fonctionbloquer.php');
+            if ($email !== $_SESSION['email'] && !(est_bloquer($_SESSION['email'],$email))) {
                 if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
-                    echo "<li class="$sexe"><a href="profil.php?email=$email">$pseudo</a></li>";
+                    echo "<li class='$sexe'><a href='profil.php?email=$email'>$pseudo</a></li>";
                 }
             }
         }
