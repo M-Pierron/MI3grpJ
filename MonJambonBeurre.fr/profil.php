@@ -1,32 +1,32 @@
 <?php
 session_start();
 
-// Vérifier si l'utilisateur est connecté
+
 if (!isset($_SESSION["email"])) {
     header('Location: accueil.php');
     exit;
 }
 
-// Vérifier si la méthode de requête est POST et si l'e-mail à bloquer est défini
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
     $email_session = $_SESSION["email"];
     $email_bloque = $_POST["email_a_bloquer"];
     $fichier_bloque = "users/$email_session/bloque";
 
-    // Vérifier si le répertoire de blocage existe, sinon le créer
+    
     if (!file_exists(dirname($fichier_bloque))) {
         mkdir(dirname($fichier_bloque), 0777, true);
     }
 
-    // Ouvrir le fichier de blocage en lecture/écriture
+    
     $fp = fopen($fichier_bloque, "a+");
     if ($fp === false) {
-        // Erreur lors de l'ouverture du fichier
+        
         echo "Une erreur est survenue lors de l'ouverture du fichier de blocage.";
         exit;
     }
 
-    // Vérifier si l'e-mail à bloquer est déjà dans la liste des blocages
+    
     $trouve = false;
     while (($data = fgetcsv($fp, 1000, ";")) !== FALSE) {
         if ($data[0] == $email_bloque) {
@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
         }
     }
     if (!$trouve) {
-        // Ajouter l'e-mail à bloquer à la liste
+        
         fputcsv($fp, [$email_bloque, 1], ";");
     }
 
-    // Fermer le fichier
+    
     fclose($fp);
 
-    // Rediriger l'utilisateur après le blocage
+    
     header('Location: accueil.php');
     exit;
 }
