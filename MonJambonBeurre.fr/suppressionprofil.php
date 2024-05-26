@@ -1,10 +1,11 @@
 <?php
 session_start();
+// -- Verificateur de connexion --
 if(!isset($_SESSION["email"])) {
     header('Location: accueil.php');
     exit;
 }
-
+// -- Fonction récursive, qui supprile le dossier et ce qu'il y a dedans -- 
 function supprimer_dossier($directory) {
     if (!is_dir($directory)) {
         return false;
@@ -23,7 +24,7 @@ function supprimer_dossier($directory) {
 
     return rmdir($directory);
 }
-
+// -- Mise en place de la suppression
 if (isset($_POST["email"])) {
     $email_session = basename($_POST["email"]); 
     $directory_to_delete = __DIR__ . "/users/$email_session"; 
