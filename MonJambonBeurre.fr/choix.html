@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-</head>
+<! -- Style directement implementé ici, au vu de l'unicité du css -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        a:active {
+            background-color: #004080;
+        }
+    </style>
+</head>
 <body>
-<! -- Page principale -->
+
 <a href="inscription.html">Inscription</a>
 <a href="connexion.html">Connexion</a>
 
 </body>
-
 </html>
