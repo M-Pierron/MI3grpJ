@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filterList(radio.value);
         });
     });
-
+    // -- Montre / cache les profils selectionnés -- 
     function filterList(sexe) {
         const listItems = document.querySelectorAll('ul li');
         listItems.forEach(item => {
