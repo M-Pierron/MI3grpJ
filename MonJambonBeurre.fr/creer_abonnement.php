@@ -17,12 +17,12 @@ if (file_exists($dossier)) {
     $contenu = "Date d'abonnement: $date_abonnement\nDate d'expiration: $date_expiration";
     file_put_contents($fichier, $contenu);
 
-    // Message de confirmation
+   
     $_SESSION['message'] = "Vous êtes maintenant abonné jusqu'au $date_expiration.";
     header("Location: confirmation.php");
     exit;
 } else {
-    // Si le dossier n'existe pas, rediriger avec une erreur
+    
     $_SESSION['error'] = "Le dossier utilisateur n'existe pas.";
     header("Location: verification.php");
     exit;
