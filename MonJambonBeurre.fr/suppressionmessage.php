@@ -1,10 +1,11 @@
 <?php
 session_start();
+// -- Verifie la connexion --
 if (!isset($_SESSION["email"])) {
-    http_response_code(403);
-    exit("Non autorisé");
+    header('Location: accueil.php');
+    exit;
 }
-
+// -- Verifie la methode POST --
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $timestamp = htmlspecialchars($_POST['timestamp']);
     $envoyeur = htmlspecialchars($_POST['envoyeur']);
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $fichier_envoyeur = "users/$envoyeur/messages/$recepteur.csv";
     $fichier_recepteur = "users/$recepteur/messages/$envoyeur.csv";
-
+// -- Supprime le message --
     function supprimerMessage($fichier, $timestamp) {
         if (file_exists($fichier)) {
             $temp_file = tempnam('.', 'tmp');
