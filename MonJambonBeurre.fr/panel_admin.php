@@ -27,6 +27,7 @@ $profiles = getProfiles($directory);
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="CSS/style4.css">
     <title>Panneau d'Administration</title>
 </head>
