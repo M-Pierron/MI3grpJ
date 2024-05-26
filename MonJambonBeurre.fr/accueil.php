@@ -40,19 +40,17 @@ if (isset($_POST['recherche'])) {
 }
 // vérifie si l'utilisateur est abonné
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-$is_abonne = true;
+$is_abonne = false;
 
-if ($email) {
-    $fichier_abonnement = "users/$email/abonnement.txt";
-    if (file_exists($fichier_abonnement)) {
-        $date_abonnement = file_get_contents($fichier_abonnement);
-        $date_expiration = date('Y-m-d', strtotime($date_abonnement . ' +1 year'));
-        $date_actuelle = date('Y-m-d');
-        
-        if ($date_actuelle <= $date_expiration) {
-            $is_abonne = false;
-        }
-    }
+$fichier_abonnement = "users/$email/abonnement.txt";
+if (file_exists($fichier_abonnement))		{
+	$is_abonne = true;
+	$date_abonnement = file_get_contents($fichier_abonnement);
+	$date_expiration = date('Y-m-d', strtotime($date_abonnement . ' +1 year'));
+	$date_actuelle = date('Y-m-d');
+	if ($date_actuelle <= $date_expiration) {
+		$is_abonne = false;
+	}
 }
 if (is_file('users/$_SESSION["email"]/admin.csv')) {
  echo "<form method='POST' action='panel_admin.php'><button type='submit'>Admin</button></form>";
@@ -93,16 +91,17 @@ if (is_file('users/$_SESSION["email"]/admin.csv')) {
 	<ul>
 	<?php
         foreach ($results as $result) {
-			$pseudo = htmlspecialchars($result['pseudo']);
-			$sexe = htmlspecialchars($result['sexe']);
-			$email= htmlspecialchars($result['mail']);
-            // Si une recherche a été effectuée, filtrer les résultats
-            if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
-				 //echo "<li class=\"$sexe\">" . htmlspecialchars($pseudo) . "</li>";
-				echo "<li class=\"$sexe\"><a href=\"profil.php?email=$email\">$pseudo</a></li>";
+            $pseudo = htmlspecialchars($result['pseudo']);
+            $sexe = htmlspecialchars($result['sexe']);
+            $email = htmlspecialchars($result['mail']);
+
+            if ($email !== $_SESSION['email']) {
+                if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
+                    echo "<li class="$sexe"><a href="profil.php?email=$email">$pseudo</a></li>";
+                }
             }
         }
-	?>
+    ?>
 	</ul>
 </body>
 
