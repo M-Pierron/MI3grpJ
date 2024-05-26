@@ -5,7 +5,12 @@ if (!isset($_SESSION["email"])) {
     header('Location: accueil.php');
     exit;
 }
-
+// -- Si ils sont bloqués, les rediriges --
+require_once('fonctionbloquer.php');
+if (est_bloquer($_SESSION["email"], $_GET["email"]) {
+    header('Location: accueil.php');
+    exit;
+    }
 // -- Verificateur de la methode POST --
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
     $email_session = $_SESSION["email"];
