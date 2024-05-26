@@ -4,6 +4,7 @@ session_start();
 <!DOCTYPE html> 
 <html> 
 	<head>
+		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style.css"> 
 		<script type="text/javascript" src="script.js"></script>
 	</head>
@@ -27,5 +28,6 @@ session_start();
 			<input type="hidden" name="email_session" value="<?php echo $_SESSION['email']; ?>">
 			<input type="image" src="image/editing.jpg" alt="Modifier le profil">
 		</form>
+		<a href="accueil.php"> accueil </a>
 	</body> 
 </html>

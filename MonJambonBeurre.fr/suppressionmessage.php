@@ -36,5 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     supprimerMessage($fichier_envoyeur, $timestamp);
     supprimerMessage($fichier_recepteur, $timestamp);
+
+    // Return a success response to the AJAX request
+    echo "Message supprimé";
 }
-?>

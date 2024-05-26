@@ -5,7 +5,7 @@ if (!$_SESSION["email"]) {
     exit;
 }
 $email_session = $_SESSION["email"];
-$fichier_log = "MonJambonbeurre.fr/users/$email_session/log_vu";
+$fichier_log = "users/$email_session/log_vu";
 
 $emails_vus = [];
 

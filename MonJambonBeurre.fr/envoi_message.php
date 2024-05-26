@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!file_exists($dossier_envoyeur)) {
             mkdir($dossier_envoyeur, 0777, true);
         }
-        $fichier_envoyeur = "$recepteur.csv";
+        $fichier_envoyeur = "$dossier_envoyeur/$recepteur.csv";
         $fp_envoyeur = fopen($fichier_envoyeur, 'a');
         fputcsv($fp_envoyeur, [$timestamp, $envoyeur, $message, $deleted]);
         fclose($fp_envoyeur);
@@ -32,4 +32,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         fclose($fp_recepteur);
     }
 }
-?>

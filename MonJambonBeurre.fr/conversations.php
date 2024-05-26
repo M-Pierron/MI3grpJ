@@ -1,11 +1,10 @@
 <?php
-session_start();
 if (!isset($_SESSION["email"])) {
     http_response_code(403);
     exit("Non autorisé");
 }
 
-$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : null;
+$email = isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : null;
 
 function recupererConversations($email) {
     $dossier_utilisateur = "users/$email/messages";

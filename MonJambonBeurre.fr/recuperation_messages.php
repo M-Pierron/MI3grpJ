@@ -23,7 +23,7 @@ if (file_exists($fichier_messages)) {
         } else {
             echo "<p><strong>$email_envoyeur</strong> [$date]: $message</p>";
             if ($email_envoyeur == $envoyeur) {
-                echo "<form action='suppressionmessage.php' method='post'>
+                echo "<form class='deleteMessageForm' action='suppressionmessage.php' method='post'>
                         <input type='hidden' name='timestamp' value='$date'>
                         <input type='hidden' name='envoyeur' value='$envoyeur'>
                         <input type='hidden' name='recepteur' value='$recepteur'>
@@ -36,4 +36,3 @@ if (file_exists($fichier_messages)) {
 } else {
     echo "<p>Aucun message trouvé.</p>";
 }
-?>

@@ -50,7 +50,7 @@
 				echo "<tr><td>Citation</td><td>$citation</td></tr>";
 				
 				if ($verif === false) {
-				$dossier_photos = "users/$email_session/photos/";  
+				$dossier_photos = "users/$email_session/photos";  
 					$photos = scandir($dossier_photos);
 					foreach ($photos as $photo) {
 						if ($photo !== '.' && $photo !== '..') {

@@ -25,7 +25,7 @@ $recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : 
 
             <form id="messageForm" method="POST">
                 <textarea name="message" id="messageInput" required></textarea>
-                <input type="hidden" name="email" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+                <input type="hidden" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
                 <input type="hidden" name="recepteur" value="<?php echo htmlspecialchars($recepteur); ?>">
                 <input type="submit" value="Envoyer">
             </form>
@@ -35,35 +35,52 @@ $recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : 
     </div>
 
     <script>
-        $('#messageForm').submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-            $.ajax({
-                url: 'envoi_message.php',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    $('#messageInput').val('');
-                    recupMessages();
+        $(document).ready(function() {
+            function recupMessages() {
+                var recepteur = '<?php echo $recepteur; ?>';
+                if (recepteur) {
+                    $.ajax({
+                        url: `recuperation_messages.php?email=${encodeURIComponent('<?php echo $_SESSION['email']; ?>')}&recepteur=${encodeURIComponent(recepteur)}`,
+                        type: 'GET',
+                        success: function(response) {
+                            $('#messagesContainer').html(response);
+                        }
+                    });
                 }
-            });
-        });
+            }
 
-        function recupMessages() {
-            var recepteur = '<?php echo $recepteur; ?>';
-            if (recepteur) {
+            $('#messageForm').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
                 $.ajax({
-                    url: `recuperation_messages.php?email=${encodeURIComponent('<?php echo $_POST['email']; ?>')}&recepteur=${encodeURIComponent(recepteur)}`,
-                    type: 'GET',
+                    url: 'envoi_message.php',
+                    type: 'POST',
+                    data: formData,
                     success: function(response) {
-                        $('#messagesContainer').html(response);
+                        $('#messageInput').val('');
+                        recupMessages();
                     }
                 });
-            }
-        }
+            });
 
-        recupMessages();
-        setInterval(recupMessages, 1000);
+            recupMessages();
+            setInterval(recupMessages, 1000);
+
+            $(document).on('submit', '.deleteMessageForm', function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: 'suppressionmessage.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        recupMessages();
+                    }
+                });
+            });
+        });
     </script>
+	
+	<a href="accueil.php"> accueil </a>
 </body>
 </html>
