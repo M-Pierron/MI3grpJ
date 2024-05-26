@@ -1,13 +1,12 @@
 <?php
 session_start();
-
-
+// -- Verificateur de connexion --
 if (!isset($_SESSION["email"])) {
     header('Location: accueil.php');
     exit;
 }
 
-
+// -- Verificateur de la methode POST --
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
     $email_session = $_SESSION["email"];
     $email_bloque = $_POST["email_a_bloquer"];
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
         exit;
     }
 
-    
+    // -- Blocage de l'utlisateur --
     $trouve = false;
     while (($data = fgetcsv($fp, 1000, ";")) !== FALSE) {
         if ($data[0] == $email_bloque) {
@@ -59,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_a_bloquer'])) {
 <body>
     <table>
         <?php
+// -- Affiche le profil, avec les fonctionnalités (lui envoyer un message, le bloquer etc...)
 $email_a_afficher = $_GET["email"];
 if ($email_a_afficher == $_SESSION['email']) {
 header('Location: monprofil.php');
