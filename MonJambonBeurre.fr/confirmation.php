@@ -13,6 +13,7 @@ unset($_SESSION['message']);
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Confirmation</title>
 </head>
 <body>
