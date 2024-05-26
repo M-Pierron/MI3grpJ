@@ -1,16 +1,18 @@
 <?php
 session_start();
+// -- Verification de connexion --
 if (!$_SESSION["email"]) {
     header('Location: accueil.php');
     exit;
 }
-$email_session = $_SESSION['email'];
+// -- Mets à jour le dossier photo --
+$email_session = $_POST['email'];
 if ($_FILES['nouvelle_image']['error'] === UPLOAD_ERR_OK) {
     $dossier_cible = "MonJambonbeurre.fr/utilisateurs/$email_session/photos/";
     $fichier_cible = $dossier_cible . basename($_FILES["nouvelle_image"]["name"]);
     $uploadOk = true;
     $type_fichier_image = strtolower(pathinfo($fichier_cible, PATHINFO_EXTENSION));
-
+    // -- Verifie la taille et le format des fichiers donnés --
     $infos_image = getimagesize($_FILES["nouvelle_image"]["tmp_name"]);
     if ($infos_image !== false) {
         $uploadOk = true;
@@ -34,7 +36,7 @@ if ($_FILES['nouvelle_image']['error'] === UPLOAD_ERR_OK) {
         echo "Désolé, seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.";
         $uploadOk = false;
     }
-
+// -- Si cela n'a pas marché", erreur --
     if ($uploadOk == false) {
         echo "Désolé, votre fichier n'a pas été téléchargé.";
     } else {
