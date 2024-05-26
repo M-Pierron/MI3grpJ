@@ -24,6 +24,7 @@ $fichier_abonnement = "users/$email/abonnement.txt";
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Abonnement</title>
 </head>
 <body>
