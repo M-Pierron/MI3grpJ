@@ -1,7 +1,8 @@
 <?php
-	header('Content-Type: text/html; charset=utf-8');	
+	header('Content-Type: text/html; charset=utf-8');
+// -- Affiche toutes les spécificités de l'utilisateurs, en fonction de l'appel -- 
 	function affichage($email_session, $verif, $prive) {
-		$fp = fopen("users/$email_session/donnees.csv", "rt");
+		$fp = fopen("users/$email_session/donnees.csv", "r");
 		$trouve = false;
 		while (($data = fgetcsv($fp, 1000, ";")) !== FALSE && !$trouve) {
 			if ($data[0] == $email_session) {
