@@ -1,7 +1,7 @@
 .hidden {
     display: none;
 }
-/* Reset CSS */
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +20,7 @@ body {
     align-items: center;
 }
 
-/* Header Styles */
+
 header {
     width: 100%;
     background-color: #0055a4;
@@ -37,7 +37,7 @@ header nav h1 {
 }
 
 
-/* Form Styles */
+
 form {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -50,7 +50,7 @@ form {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Search Bar */
+
 .div1 {
     width: 100%;
     max-width: 600px;
@@ -79,7 +79,7 @@ form {
 }
 
 .div1 input[type="submit"] {
-    display: none; /* Hide default submit button */
+    display: none; 
 }
 
 .div1 .search-icon {
@@ -91,7 +91,7 @@ form {
     border: none;
 }
 
-/* Radio Buttons */
+
 .div1 .filters {
     display: flex;
     justify-content: center;
@@ -102,7 +102,7 @@ form {
     margin: 0 10px;
 }
 
-/* Top Buttons */
+
 .div2 {
     display: flex;
     justify-content: space-between;
@@ -147,7 +147,7 @@ form {
     background-color: #003f7f;
 }
 
-/* Subscription Banner */
+
 .subscription-banner {
     background: url('../image/image1.jpg') no-repeat center center/cover;
     width: 200px;
@@ -176,7 +176,7 @@ form {
     background-color: rgba(255, 255, 255, 1);
 }
 
-/* List of profiles */
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -195,11 +195,11 @@ li {
 }
 
 li.homme {
-    border-left: 5px solid #0055a4; /* Bleu */
+    border-left: 5px solid #0055a4; 
 }
 
 li.femme {
-    border-left: 5px solid #ed2939; /* Rouge */
+    border-left: 5px solid #ed2939;
 }
 
 li a {
@@ -212,7 +212,6 @@ li a:hover {
     text-decoration: underline;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
