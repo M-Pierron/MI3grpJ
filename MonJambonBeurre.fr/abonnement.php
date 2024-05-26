@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// -- Verificateur de connexion -- 
 if (!isset($_SESSION['email'])) {
     header("Location: accueil.php");
     exit;
@@ -8,7 +8,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-
+// -- Verifie l'abonnement de l'utilisateur --
 $fichier_abonnement = "users/$email/abonnement.txt";
     if (file_exists($fichier_abonnement)) {
         $date_abonnement = file_get_contents($fichier_abonnement);
@@ -27,6 +27,7 @@ $fichier_abonnement = "users/$email/abonnement.txt";
     <title>Abonnement</title>
 </head>
 <body>
+    <a href="accueil.php"> accueil </a>
     <h1>Abonnement pour <?php echo htmlspecialchars($email); ?></h1>
     <form method="POST" action="creer_abonnement.php">
         <button type="submit">ABONNEMENT 1 AN</button>
