@@ -3,6 +3,7 @@
 // -- Verificateur de connexion --
 session_start();
 if (!isset($_SESSION["email"])) {
+	hearder('Location: accueil.php'); 
 }
 
 $recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : null;
