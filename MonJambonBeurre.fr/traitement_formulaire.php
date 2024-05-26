@@ -1,5 +1,5 @@
 <?php
-
+// -- Effectue l'inscription sur la base de données -- 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $email = $_POST['Email'];
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_inscription = date('Y-m-d');
     $donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info; $date_inscription\n";
 
-   
+   // -- Creer le dossier correspondant --
     if (!is_dir('users/'.$email)){
         mkdir('users/'.$email);
         mkdir('users/'.$email.'/photos');
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     fwrite($file, $donnees);
     fclose($file);
 
-   
+   // -- Effectue les images -- 
     if (!empty($_FILES['images']['name'][0])) {
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
             $fileName = basename($_FILES['images']['name'][$key]);
