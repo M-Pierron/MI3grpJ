@@ -2,8 +2,9 @@
 session_start();
 // Regarde si la session est ouverte
 if (isset($_SESSION['email']){
-	// Redirige vers la page d'acceuil
-	header("Location: acceuil.php");
+	// Redirige vers la page suivante ou sinon d'acceuil
+	$suivante=isset($_SESSION['suivante']) ? $_SESSION['suivante'] : 'acceuil.php';
+	header("Location: $suivante");
 	exit;
 }
 
