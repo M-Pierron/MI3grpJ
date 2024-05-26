@@ -13,9 +13,10 @@ $recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : 
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="CSS/style3.css">
-    <title>Conversation avec <?php echo htmlspecialchars($recepteur); ?></title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<title>Conversation avec <?php echo htmlspecialchars($recepteur); ?></title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <! -- Sur la partie gauche de la page, affiche les discussions -->
