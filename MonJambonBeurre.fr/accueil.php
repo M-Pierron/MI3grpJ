@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (!isset($_SESSION['email'])) {
+    header(Location: "choix.html");
+    exit;
+}
+
+$email = $_SESSION['email'];
 $dossier='users';
 $tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
@@ -13,7 +19,7 @@ function recupinfo($nomfichier) {
             $infos = [
 			'pseudo' => $ligne[7],'sexe' => strtolower($ligne[4]),'mail' =>$ligne[0]];
             return  $infos;
-			//implode(' ', $infos);
+			
         }
     }
     return null;
@@ -97,13 +103,13 @@ if (file_exists($fichier_admin)){
 		<form/>
 	<?php endif; ?>
 	</div>
-	<?php if (!$is_abonne): ?>
+	<?php
+	require_once('fonction_abonnee.php');
+	if (!(est_abonnee($email))): ?>
 		<form method="POST" action="abonnement.php" align="center">
 			<button type="submit">ABONNEZ-VOUS</button>
 		</form>
 	<?php endif; ?>
-	
-	
 	<ul>
 	<?php
         foreach ($results as $result) {
