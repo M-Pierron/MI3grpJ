@@ -6,6 +6,7 @@ if (!$_SESSION["email"]) {
     exit;
 }
 
+
 $email_session = $_SESSION["email"];
 $fichier_bloque = "users/$email_session/bloque";
 $bloques = [];
@@ -19,7 +20,7 @@ if (file_exists($fichier_bloque)) {
     }
     fclose($fp);
 }
-
+// -- Cherche les bloqués --
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_a_debloquer = $_POST['email_a_debloquer'];
     if (($key = array_search($email_a_debloquer, $bloques)) !== false) {
@@ -50,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul>
             <?php foreach ($bloques as $email_bloque) : ?>
                 <li>
+                    <! -- Les affiches, avec possibilités de les debloquer -->
                     <?php echo htmlspecialchars($email_bloque); ?>
                     <form action="mesbloques.php" method="post" style="display:inline;">
                         <input type="hidden" name="email_a_debloquer" value="<?php echo htmlspecialchars($email_bloque); ?>">
