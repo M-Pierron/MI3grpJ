@@ -43,6 +43,7 @@ $profiles = getProfiles($directory);
             <tr>
                 <td><?php echo htmlspecialchars($profile['email']); ?></td>
                 <td>
+			<! -- Affiche les profils avec les fonctionnalités admin -->
                     <form action="editionprofil.php" method="POST">
                         <input type="hidden" name="email_session" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Éditer">
