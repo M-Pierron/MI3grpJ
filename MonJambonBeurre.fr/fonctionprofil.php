@@ -1,24 +1,24 @@
 <?php
 	
 	function affichage($email_session, $verif, $prive) {
-		$fp = fopen("users/$email_session/donnees.csv", "r+");
+		$fp = fopen("users/$email_session/donnees.csv", "rt");
 		$trouve = false;
 		while (($data = fgetcsv($fp, 1000, ";")) !== FALSE && !$trouve) {
 			if ($data[0] == $email_session) {
 				$trouve = true;
-				$email = $data[0];
-				$motdepasse = $data[1];
-				$prenom = $data[2];
-				$nom = $data[3];
-				$sexe = $data[4];
-				$age = $data[5];
-				$locaprecise = $data[6];
-				$pseudo = $data[7];
-				$profession = $data[8];
-				$loca = $data[9];
-				$situation = $data[10];
-				$description = $data[11];
-				$citation = $data[12];
+				$email = htmlspecialchars($data[0]);
+				$motdepasse = htmlspecialchars($data[1]);
+				$prenom = htmlspecialchars($data[2]);
+				$nom = htmlspecialchars($data[3]);
+				$sexe = htmlspecialchars($data[4]);
+				$age = htmlspecialchars($data[5]);
+				$locaprecise = htmlspecialchars($data[6]);
+				$pseudo = htmlspecialchars($data[7]);
+				$profession = htmlspecialchars($data[8]);
+				$loca = htmlspecialchars($data[9]);
+				$situation = htmlspecialchars($data[10]);
+				$description = htmlspecialchars($data[11]);
+				$citation = htmlspecialchars($data[12]);
 
 				if ($verif === true) {
 					$motdepasse = "<input type='password' id='mdp' name='mdp' value='$motdepasse'>";
@@ -31,18 +31,7 @@
 					$situation = "<input type='text' id='situation' name='situation' value='$situation'>";
 					$description = "<textarea id='description' name='description'>$description</textarea>";
 					$citation = "<textarea id='citation' name='citation'>$citation</textarea>";
-				} else {
-					$dossier_photos = "users/$email_session/photos/";  
-					$photos = scandir($dossier_photos);
-					foreach ($photos as $photo) {
-						if ($photo !== '.' && $photo !== '..') {
-							echo "<tr>";
-							echo "<td>Photo</td><td><img src='$dossier_photos/$photo' alt='Photo utilisateur'></td>";
-							echo "</tr>";
-						}
-					}
 				}
-
 				if ($prive === true) {
 					echo "<tr><td>Adresse mail</td><td>$email</td></tr>";
 					echo "<tr><td>Mot de passe</td><td>$motdepasse</td></tr>";
@@ -59,6 +48,19 @@
 				echo "<tr><td>Situation</td><td>$situation</td></tr>";
 				echo "<tr><td>Description</td><td>$description</td></tr>";
 				echo "<tr><td>Citation</td><td>$citation</td></tr>";
+				
+				if ($verif === false) {
+				$dossier_photos = "users/$email_session/photos/";  
+					$photos = scandir($dossier_photos);
+					foreach ($photos as $photo) {
+						if ($photo !== '.' && $photo !== '..') {
+							echo "<tr>";
+							echo "<td>Photo</td><td><img src='$dossier_photos/$photo' alt='Photo utilisateur'></td>";
+							echo "</tr>";
+						}
+					}
+				}
+				
 			}
 		}
 		fclose($fp);
