@@ -7,7 +7,7 @@ if (!isset($_SESSION["email"])) {
 }
 // -- Si ils sont bloqués, les rediriges --
 require_once('fonctionbloquer.php');
-if (est_bloquer($_SESSION["email"], $_GET["email"]) {
+if (est_bloquer($_SESSION["email"], $_GET["email"])) {
     header('Location: accueil.php');
     exit;
     }
