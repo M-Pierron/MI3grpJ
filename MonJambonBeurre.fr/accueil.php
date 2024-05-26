@@ -9,7 +9,7 @@ $email = $_SESSION['email'];
 $dossier='users';
 $tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
-// Fonction pour lire et extraire les informations du profil
+
 function recupinfo($nomfichier) {
     if (($fichier = fopen($nomfichier, 'r')) !== false) {
         $ligne = fgetcsv($fichier, 0, ';');
@@ -25,7 +25,7 @@ function recupinfo($nomfichier) {
     return null;
 }
 
-// Parcourir les fichiers et récupérer informations à afficher
+
 
 $results = [];
 foreach ($tablesdossiers as $tablesdossiers) {
@@ -39,12 +39,12 @@ foreach ($tablesdossiers as $tablesdossiers) {
     }
 }
 
-// Vérifier si une recherche a été effectuée
+
 $recherche = '';
 if (isset($_POST['recherche'])) {
     $recherche = strtolower(trim($_POST['recherche']));
 }
-// vérifie si l'utilisateur est abonné
+
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $is_abonne = false;
 
@@ -59,7 +59,7 @@ if (file_exists($fichier_abonnement))		{
 	}
 }
 
-//vérifie si administrateur 
+
 $fichier_admin="users/$email/admin.csv";
 $est_admin=FALSE;
 if (file_exists($fichier_admin)){
