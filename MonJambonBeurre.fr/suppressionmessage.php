@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             rename($temp_file, $fichier);
         }
     }
-
+// -- Supprime dans les deux dossiers -- 
     supprimerMessage($fichier_envoyeur, $timestamp);
     supprimerMessage($fichier_recepteur, $timestamp);
 
