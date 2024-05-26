@@ -1,5 +1,6 @@
 <?php 
 session_start();
+// -- Verificateur de connexion --
 if(!$_SESSION["email"]){
     header('Location: accueil.php');
     exit;
@@ -19,31 +20,13 @@ $email_session = $_POST['email_session'];
             <form action="edition.php" method="post">
                 <table>
                     <?php
+                        // -- Affichage des champs à potentiellement modifier --
                         require_once("fonctionprofil.php"); 
                         affichage($email_session, true, true);  
                     ?>
                 </table>
                 <input type="hidden" name="email_session" value="<?php echo $email_session; ?>">
                 <input type="submit" value="Sauvegarder">
-            </form>
-            <form action="upload_image.php" method="post" enctype="multipart/form-data">
-                <?php
-                $repertoire_photos = "users/$email_session/photos/";
-                if (is_dir($repertoire_photos)) {
-                    $photos = scandir($repertoire_photos);
-                    foreach ($photos as $photo) {
-                        if ($photo !== '.' && $photo !== '..') {
-                            echo "<label>";
-                            echo "<input type='radio' name='image_selectionnee' value='$photo'>";
-                            echo "<img src='$repertoire_photos/$photo' alt='Photo utilisateur'>";
-                            echo "</label>";
-                        }
-                    }
-                }
-                ?>
-                <label for="nouvelle_image">Choisissez une nouvelle image :</label>
-                <input type="file" name="nouvelle_image" id="nouvelle_image">
-                <input type="submit" value="Modifier">
             </form>
             <a href="accueil.php"> <img src="image/retour.jpg" alt="Retour" /> </a>
         </div>
