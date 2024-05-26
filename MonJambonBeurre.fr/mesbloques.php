@@ -1,5 +1,6 @@
 <?php
 session_start();
+// -- Verificateur de connexion --
 if (!$_SESSION["email"]) {
     header('Location: accueil.php');
     exit;
