@@ -1,4 +1,5 @@
 <?php
+// -- Verification de connexion --
 session_start();
 if (!isset($_SESSION["email"])) {
     header('Location: accueil.php');
@@ -6,7 +7,7 @@ if (!isset($_SESSION["email"])) {
 }
 
 $directory = "users";
-
+// -- Va chercher les profils, pour faire un tableau -- 
 function getProfiles($directory) {
     $profiles = [];
     foreach (scandir($directory) as $user) {
