@@ -1,4 +1,5 @@
 <?php
+// -- Verificateur de connexion --
 session_start();
 if (!isset($_SESSION['email'])) {
     header(Location: "choix.html");
@@ -9,7 +10,7 @@ $email = $_SESSION['email'];
 $dossier='users';
 $tablesdossiers=array_diff(scandir($dossier), array('..', '.'));;
 
-
+// -- Fonction qui récupeère les informations des utilisateurs --
 function recupinfo($nomfichier) {
     if (($fichier = fopen($nomfichier, 'r')) !== false) {
         $ligne = fgetcsv($fichier, 0, ';');
@@ -26,7 +27,7 @@ function recupinfo($nomfichier) {
 }
 
 
-
+// -- Stock les résultats dans un tableau --
 $results = [];
 foreach ($tablesdossiers as $tablesdossiers) {
 	//$sousdossier=$tablesdossiers;
@@ -44,7 +45,7 @@ $recherche = '';
 if (isset($_POST['recherche'])) {
     $recherche = strtolower(trim($_POST['recherche']));
 }
-
+// -- Verification de l'abonnement --
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $is_abonne = false;
 
@@ -59,7 +60,7 @@ if (file_exists($fichier_abonnement))		{
 	}
 }
 
-
+// -- Verification du profil admin --
 $fichier_admin="users/$email/admin.csv";
 $est_admin=FALSE;
 if (file_exists($fichier_admin)){
@@ -80,7 +81,7 @@ if (file_exists($fichier_admin)){
             <h1>Trouvez l'amour</h1>
         </nav>
     </header>
-
+	<! -- Ensemble des boutons, en méthode post, permettant l'acces aux fonctionnalités -->
     <div class="div2">
         <div class="left-buttons">
             <form method="POST" action="conversation_message.php">
@@ -103,20 +104,20 @@ if (file_exists($fichier_admin)){
             </form>
         <?php endif; ?>
     </div>
-    
+    <! -- Barre de recherche -->
     <div class="div1">
         <form method="POST" action="">
             <input type="text" name="recherche" placeholder="Rechercher..." />
             <button type="submit" class="search-icon"></button>
         </form>
-        
+        <! -- Filtres -->
         <div class="filters">
             <input type="radio" name="sexe" value="all" checked="checked" /> Tous
             <input type="radio" name="sexe" value="homme" /> Homme
             <input type="radio" name="sexe" value="femme" /> Femme
         </div>
     </div>
-
+	<! -- Bouton abonnement -->
     <?php
     require_once('fonction_abonnee.php');
     if (!(est_abonnee($email))): ?>
@@ -128,6 +129,7 @@ if (file_exists($fichier_admin)){
     <?php endif; ?>
 
     <ul>
+<! -- Affichage des profils trouvés -->
     <?php
     foreach ($results as $result) {
         $pseudo = htmlspecialchars($result['pseudo']);
