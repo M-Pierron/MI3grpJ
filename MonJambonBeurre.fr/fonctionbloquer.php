@@ -1,4 +1,5 @@
 <?php
+// -- Verifie si la personne est bloqué ou a bloqué l'utilisateur --
 function est_bloquer($monemail, $sonemail) {
     $monfichier_bloque = "users/$monemail/bloque";
     $sonfichier_bloque =  "users/$sonemail/bloque";
