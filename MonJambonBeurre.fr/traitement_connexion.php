@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	else{
 		echo 'utilisateur pas trouvé';
+		header("Location: connexion.html") ;
 		}
 	}
-        	
+        header("Location: connexion.html") ;	
 ?>
