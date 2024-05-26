@@ -1,10 +1,11 @@
 <?php
     session_start();
+    // -- Verificateur de connexion --
     if (!isset($_SESSION["email"])) {
         header('Location: accueil.php');
         exit;
     }
-
+    // -- Recupere la methode POST -- 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_session = $_SESSION["email"];
         $fichier_csv = fopen("users/$email_session/donnees.csv", "r+");
@@ -13,7 +14,7 @@
         while (($data = fgetcsv($fichier_csv, 1000, ";")) !== FALSE) {
             $donnees[] = $data;
         }
-
+        // -- Modifie les valeurs -- 
         foreach ($donnees as &$ligne) {
             if ($ligne[0] == $email_session) { r
                 $ligne[1] = $_POST["mdp"];           
