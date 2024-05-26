@@ -16,7 +16,7 @@ function supprimer_dossier($directory) {
             supprimer_dossier($element);
         } else {
             if (!unlink($element)) {
-                return false; // Si la suppression d'un fichier échoue
+                return false; 
             }
         }
     }
@@ -25,8 +25,8 @@ function supprimer_dossier($directory) {
 }
 
 if (isset($_POST["email"])) {
-    $email_session = basename($_POST["email"]); // basename pour éviter la traversée de répertoires
-    $directory_to_delete = __DIR__ . "/users/$email_session"; // Utiliser __DIR__ pour obtenir le chemin absolu
+    $email_session = basename($_POST["email"]); 
+    $directory_to_delete = __DIR__ . "/users/$email_session"; 
 
     if (is_dir($directory_to_delete)) {
         if (supprimer_dossier($directory_to_delete)) {
