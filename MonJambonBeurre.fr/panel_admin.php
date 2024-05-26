@@ -27,6 +27,7 @@ $profiles = getProfiles($directory);
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="CSS/style4.css">
     <title>Panneau d'Administration</title>
 </head>
 <body>
@@ -48,7 +49,7 @@ $profiles = getProfiles($directory);
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce profil ?');">
                     </form>
-                    <form action="messagerie.php" method="GET">
+                    <form action="conversation_message.php" method="GET">
                         <input type="hidden" name="email" value="<?php echo $profile['email']; ?>">
                         <input type="submit" value="Messagerie">
                     </form>

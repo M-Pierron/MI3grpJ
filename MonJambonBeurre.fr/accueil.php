@@ -75,56 +75,74 @@ if (file_exists($fichier_admin)){
 <script src="JS/filtreaccueil.js" defer></script>
 </head>
 <body>
-	<div class="div1">
-		<form method="POST" action=" ">
-			<input type="text" name="recherche" placeholder="Rechercher..." />
-			<input type="submit" value="Valider" />
-		</form>
-		
-		<input type="radio" name="sexe" value="all" checked="checked" /> Tous
-		<input type="radio" name="sexe" value="homme"  /> Homme
-		<input type="radio" name="sexe" value="femme"  /> Femme
-	</div>
-	<div class="div2">
-		<form method="POST" action="conversation_message.php">
-			<button type="submit" id="msg">mesmessages</button>
-			<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
-		</form>
-		<form method="POST" action="monprofil.php">
-			<input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
-			<button type="submit">Mon profil</button>
-		</form>
-		<form method="POST" action="traitement_deconnexion.php">
-			<button type="submit" id="deco">Deconnexion<img src="image/croix.png" width="17" height="17"></button>
-		</form>
-	<?php if ($est_admin): ?>
-		<form method="POST" action="panel_admin.php">
-			<button type="submit" id="adm" value="administrateur">Admin</button>
-		<form/>
-	<?php endif; ?>
-	</div>
-	<?php
-	require_once('fonction_abonnee.php');
-	if (!(est_abonnee($email))): ?>
-		<form method="POST" action="abonnement.php" align="center">
-			<button type="submit">ABONNEZ-VOUS</button>
-		</form>
-	<?php endif; ?>
-	<ul>
-	<?php
-        foreach ($results as $result) {
-            $pseudo = htmlspecialchars($result['pseudo']);
-            $sexe = htmlspecialchars($result['sexe']);
-            $email = htmlspecialchars($result['mail']);
-			require_once('fonctionbloquer.php');
-            if ($email !== $_SESSION['email'] && !(est_bloquer($_SESSION['email'],$email))) {
-                if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
-                    echo "<li class='$sexe'><a href='profil.php?email=$email'>$pseudo</a></li>";
-                }
+    <header>
+        <nav>
+            <h1>Trouvez l'amour</h1>
+        </nav>
+    </header>
+
+    <div class="div2">
+        <div class="left-buttons">
+            <form method="POST" action="conversation_message.php">
+                <button type="submit" id="msg">Mes messages</button>
+                <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+            </form>
+            <form method="POST" action="monprofil.php">
+                <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+                <button type="submit">Mon profil</button>
+            </form>
+        </div>
+        <div class="right-button">
+            <form method="POST" action="traitement_deconnexion.php">
+                <button type="submit" id="deco">Déconnexion<img src="../image/croix.png" width="17" height="17"></button>
+            </form>
+        </div>
+        <?php if ($est_admin): ?>
+            <form method="POST" action="panel_admin.php">
+                <button type="submit" id="adm" value="administrateur">Admin</button>
+            </form>
+        <?php endif; ?>
+    </div>
+    
+    <div class="div1">
+        <form method="POST" action="">
+            <input type="text" name="recherche" placeholder="Rechercher..." />
+            <button type="submit" class="search-icon"></button>
+        </form>
+        
+        <div class="filters">
+            <input type="radio" name="sexe" value="all" checked="checked" /> Tous
+            <input type="radio" name="sexe" value="homme" /> Homme
+            <input type="radio" name="sexe" value="femme" /> Femme
+        </div>
+    </div>
+
+    <?php
+    require_once('fonction_abonnee.php');
+    if (!(est_abonnee($email))): ?>
+        <div class="subscription-banner">
+            <form method="POST" action="abonnement.php">
+                <button type="submit">ABONNEZ-VOUS</button>
+            </form>
+        </div>
+    <?php endif; ?>
+
+    <ul>
+    <?php
+    foreach ($results as $result) {
+        $pseudo = htmlspecialchars($result['pseudo']);
+        $sexe = htmlspecialchars($result['sexe']);
+        $email = htmlspecialchars($result['mail']);
+        require_once('fonctionbloquer.php');
+        if ($email !== $_SESSION['email'] && !(est_bloquer($_SESSION['email'],$email))) {
+            if ($recherche === '' || strpos(strtolower($pseudo), $recherche) !== false) {
+                echo "<li class='$sexe'><a href='profil.php?email=$email'>$pseudo</a></li>";
             }
         }
+    }
     ?>
-	</ul>
+    </ul>
 </body>
-
 </html>
+
+

@@ -28,6 +28,7 @@ $conversations = recupererConversations($email);
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="CSS/style3.css">
     <title>Conversations</title>
 </head>
 <body>

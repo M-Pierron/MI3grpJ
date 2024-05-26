@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["email"])) {
+if (!$_SESSION["email"]) {
     header('Location: accueil.php');
     exit;
 }
@@ -19,33 +19,21 @@ if (file_exists($fichier_bloque)) {
     fclose($fp);
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_a_debloquer = $_POST['email_a_debloquer'];
-    $donnees = [];
-    if (file_exists($fichier_bloque)) {
-        $fp = fopen($fichier_bloque, "r");
-        while (($data = fgetcsv($fp, 1000, ";")) !== FALSE) {
-            $donnees[] = $data;
+    if (($key = array_search($email_a_debloquer, $bloques)) !== false) {
+        unset($bloques[$key]);
+        $fp = fopen($fichier_bloque, "w");
+        foreach ($bloques as $email_bloque) {
+            fputcsv($fp, [$email_bloque, 0], ";");
         }
         fclose($fp);
+        header('Location: mesbloques.php');
+        exit;
     }
-    foreach ($donnees as &$ligne) {
-        if ($ligne[0] == $email_a_debloquer) {
-            $ligne[1] = 0;
-            break;
-        }
-    }
-    $fp_temp = fopen("$fichier_bloque.tmp", "w");
-    foreach ($donnees as $ligne) {
-        fputcsv($fp_temp, $ligne, ";");
-    }
-    fclose($fp_temp);
-    rename("$fichier_bloque.tmp", $fichier_bloque);
-    header('Location: mesbloques.php');
-    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
