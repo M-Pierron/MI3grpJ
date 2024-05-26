@@ -19,7 +19,7 @@
 				$situation = htmlspecialchars($data[10]);
 				$description = htmlspecialchars($data[11]);
 				$citation = htmlspecialchars($data[12]);
-
+				$date_inscription = htmlspecialchars($data[13]);
 				if ($verif === true) {
 					$motdepasse = "<input type='password' id='mdp' name='mdp' value='$motdepasse'>";
 					$nom = "<input type='text' id='nom' name='nom' value='$nom'>";
@@ -48,6 +48,7 @@
 				echo "<tr><td>Situation</td><td>$situation</td></tr>";
 				echo "<tr><td>Description</td><td>$description</td></tr>";
 				echo "<tr><td>Citation</td><td>$citation</td></tr>";
+				echo "<tr><td>Date Inscription</td><td>$date_inscription</td></tr>";
 				
 				if ($verif === false) {
 				$dossier_photos = "users/$email_session/photos/";  
