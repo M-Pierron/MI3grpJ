@@ -5,6 +5,14 @@ session_start();
 if (!isset($_SESSION["email"])) {
 	hearder('Location: accueil.php'); 
 }
+// -- Si ils sont bloqués, les rediriges --
+require_once('fonctionbloquer.php');
+require_once('fonction_abonnee.php');
+if (est_bloquer($_SESSION["email"], $_GET["email"]) || !(est_abonne($_SESSION["email"]) || !(est_femme($_SESSION["email"]) {
+    header('Location: accueil.php');
+    exit;
+    }
+
 
 // -- Recupere le recepteur avec la methode get --
 $recepteur = isset($_GET['recepteur']) ? htmlspecialchars($_GET['recepteur']) : null;
