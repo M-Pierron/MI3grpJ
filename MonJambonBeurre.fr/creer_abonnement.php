@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// -- Verificateur de connexion --
 if (!isset($_SESSION['email'])) {
     header("Location: accueil.php");
     exit;
@@ -8,7 +8,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 $dossier = 'users/' . $email;
-
+// -- Verifie si l'abonnement existe --
 if (file_exists($dossier)) {
     $fichier = $dossier . '/abonnement.txt';
     $date_abonnement = date('Y-m-d');
