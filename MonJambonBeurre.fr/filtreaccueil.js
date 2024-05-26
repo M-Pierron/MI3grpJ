@@ -22,6 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initial filter
+    
     filterList(document.querySelector('input[name="sexe"]:checked').value);
 });
