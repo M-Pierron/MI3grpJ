@@ -24,7 +24,7 @@ if (file_exists($dossier)) {
 } else {
     
     $_SESSION['error'] = "Le dossier utilisateur n'existe pas.";
-    header("Location: verification.php");
+    header("Location: accueil.php");
     exit;
 }
 ?>
