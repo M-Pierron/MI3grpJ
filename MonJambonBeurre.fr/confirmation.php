@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// -- Verificateur de connexion --
 if (!isset($_SESSION['message'])) {
     header("Location: accueil.php");
     exit;
