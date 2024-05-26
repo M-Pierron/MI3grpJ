@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupère les données du formulaire
+   
     $email = $_POST['Email'];
     $mot_de_passe = $_POST['mdp'];
     $nom = $_POST['Nom'];
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_inscription = date('Y-m-d');
     $donnees = "$email; $mot_de_passe; $nom; $prenom; $sexe; $date_naissance; $adresse; $pseudo; $profession; $lieu; $situation; $physique; $info; $date_inscription\n";
 
-    // Crée le dossier avec le nom de l'email
+   
     if (!is_dir('users/'.$email)){
         mkdir('users/'.$email);
         mkdir('users/'.$email.'/photos');
@@ -28,21 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Le fichier où les donnees sont enregistrées    
+      
     $fichier = 'users/'.$email.'/donnees.csv';
     
-    // Ecrit dans le fichier les données entrée a l'inscription
+    
     $file = fopen($fichier, 'a');
     fwrite($file, $donnees);
     fclose($file);
 
-    // Traiter les fichiers uploadés
+   
     if (!empty($_FILES['images']['name'][0])) {
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
             $fileName = basename($_FILES['images']['name'][$key]);
             $targetFilePath = 'users/'.$email . '/photos/' . $fileName;
 
-            // Déplace le fichier vers le dossier cible
+            
             if (move_uploaded_file($tmp_name, $targetFilePath)) {
                 echo "Le fichier $fileName a été téléchargé avec succès.<br>";
             } else {
