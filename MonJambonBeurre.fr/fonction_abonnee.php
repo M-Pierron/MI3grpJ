@@ -1,5 +1,5 @@
 <?php
-	
+// -- Verifie l'abonnement de la personne -- 
 function est_abonnee($email){
 	$est_abonne = false;
 	$fichier_abonnement = "users/$email/abonnement.txt";
@@ -14,7 +14,7 @@ function est_abonnee($email){
 	}
 	return $est_abonne;
 }
-
+// -- Verifie le sexe de la personne -- 
 function est_femme($email) {
 	$nomfichier="users/$email/donnees.csv";
     if (($fichier = fopen($nomfichier, 'r')) !== false) {
