@@ -1,5 +1,5 @@
 <?php
-	
+header('Content-Type: text/html; charset=utf-8');	
 	function affichage($email_session, $verif, $prive) {
 		$fp = fopen("users/$email_session/donnees.csv", "rt");
 		$trouve = false;
