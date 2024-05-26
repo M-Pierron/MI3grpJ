@@ -91,3 +91,6 @@ supression barrerecherche.php
 accueil.php
 filtreaccueil.js
 accueil.css
+
+Semaine du 20/05/2024 :
+Refonte totale du projet
