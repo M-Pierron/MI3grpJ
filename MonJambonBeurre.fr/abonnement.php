@@ -8,7 +8,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-//vérifie expiration
+
 $fichier_abonnement = "users/$email/abonnement.txt";
     if (file_exists($fichier_abonnement)) {
         $date_abonnement = file_get_contents($fichier_abonnement);
