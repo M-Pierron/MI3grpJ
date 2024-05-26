@@ -1,19 +1,19 @@
 <?php
 session_start();
 
-$error = ''; // Initialisation de la variable d'erreur
+$error = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Vérifie si les clés 'email' et 'password' existent dans $_POST
+    
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password']; 
 
-        // Vérifier si le dossier de l'utilisateur existe
+       
         $dossier = 'Monjambonbuerre/users/' . $email . '/donnees.csv';
         if (file_exists($dossier)) {
             $_SESSION['email'] = $email;
-            header("Location: abonnement.php"); // Redirection vers la page d'abonnement
+            header("Location: abonnement.php"); 
             exit;
         } else {
             $error = "L'utilisateur n'existe pas.";
