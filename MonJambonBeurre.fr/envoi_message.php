@@ -1,17 +1,18 @@
 <?php
 session_start();
+// -- Verificateur de connexion --
 if (!isset($_SESSION["email"])) {
     http_response_code(403);
     exit("Non autorisé");
 }
-
+// -- Verification methode POST --
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = htmlspecialchars($_POST['message']);
     $recepteur = htmlspecialchars($_POST['recepteur']);
     $envoyeur = htmlspecialchars($_POST["email"]);
     $timestamp = date('Y-m-d H:i:s');
     $deleted = 0; 
-
+    // -- Sauvegarde le message, dans les deux dossiers -- 
     if (!empty($message) && !empty($recepteur)) {
         $dossier_envoyeur = "users/$envoyeur/messages";
         if (!file_exists($dossier_envoyeur)) {
